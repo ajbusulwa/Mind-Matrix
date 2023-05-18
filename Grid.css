@@ -1,0 +1,113 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 4px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 8px;
+  border: 2px solid #cccccc; /* Add border to the entire grid */
+}
+.row {
+  display: flex; /* Change display to flex */
+  justify-content: space-between; /* Add this line */
+}
+
+.cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #444444;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #cccccc; /* Add border to individual cells */
+}
+
+.cell:hover {
+  background-color: #84c1b9;
+}
+/* Add styling to the smaller squares of 9 boxes */
+.row:nth-child(3n + 1) .cell,
+.row:nth-child(3n + 2) .cell,
+.row:nth-child(3n + 3) .cell {
+  border-bottom: 2px solid #cccccc;
+}
+
+.grid > .row:nth-child(3n + 3) {
+  border-bottom: 2px solid #cccccc;
+}
+
+/* Add vertical dividers for the smaller squares */
+.row .cell:nth-child(3n + 1) {
+  border-right: 2px solid #cccccc;
+}
+
+.row .cell:nth-child(3n + 3) {
+  border-right: 2px solid #cccccc;
+}
+.cell.number-placed {
+  animation: numberFadeIn 0.5s ease;
+}
+
+.cell.clearing {
+  animation: numberFadeOut 0.5s ease;
+}
+
+.cell.highlight {
+  animation: cellHighlight 1s ease;
+}
+
+@keyframes numberFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes numberFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes cellHighlight {
+  0% {
+    background-color: #ffffff;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+.clear-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.clear-button {
+  margin-top: 16px;
+  background-color: #ffffff;
+  color: #444444;
+  border: 2px solid #444444;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: #e03c3c;
+}
