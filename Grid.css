@@ -7,9 +7,10 @@
   padding: 8px;
   border: 2px solid #cccccc; /* Add border to the entire grid */
 }
+
 .row {
-  display: flex; /* Change display to flex */
-  justify-content: space-between; /* Add this line */
+  display: flex;
+  justify-content: space-between;
 }
 
 .cell {
@@ -30,6 +31,7 @@
 .cell:hover {
   background-color: #84c1b9;
 }
+
 /* Add styling to the smaller squares of 9 boxes */
 .row:nth-child(3n + 1) .cell,
 .row:nth-child(3n + 2) .cell,
@@ -37,8 +39,8 @@
   border-bottom: 2px solid #cccccc;
 }
 
-.grid > .row:nth-child(3n + 3) {
-  border-bottom: 2px solid #cccccc;
+.row:nth-child(-n + 9) .cell {
+  border-top: 2px solid #cccccc;
 }
 
 /* Add vertical dividers for the smaller squares */
@@ -49,6 +51,24 @@
 .row .cell:nth-child(3n + 3) {
   border-right: 2px solid #cccccc;
 }
+
+/* Add outside border lines */
+.row:first-child .cell {
+  border-top: 2px solid #000000;
+}
+
+.row:last-child .cell {
+  border-bottom: 2px solid #000000;
+}
+
+.row .cell:first-child {
+  border-left: 2px solid #000000;
+}
+
+.row .cell:last-child {
+  border-right: 2px solid #000000;
+}
+
 .cell.number-placed {
   animation: numberFadeIn 0.5s ease;
 }
@@ -90,12 +110,16 @@
     background-color: #ffffff;
   }
 }
-.clear-button-container {
+
+.button-container {
   display: flex;
   justify-content: center;
   margin-top: 16px;
 }
-.clear-button {
+
+.clear-button,
+.save-button,
+.load-button {
   margin-top: 16px;
   background-color: #ffffff;
   color: #444444;
@@ -110,4 +134,9 @@
 
 .clear-button:hover {
   background-color: #e03c3c;
+}
+
+.save-button:hover,
+.load-button:hover {
+  background-color: #84c1b9;
 }
