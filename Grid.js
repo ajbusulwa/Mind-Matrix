@@ -8,6 +8,8 @@ const Grid = () => {
 
   const [grid, setGrid] = useState([]);
   const [memory, setMemory] = useState([]);
+  const [selectedNumber, setSelectedNumber] = useState(null);
+  const [selectedCell, setSelectedCell] = useState(null);
 
   useEffect(() => {
     generateRandomPattern(initialDifficulty);
@@ -65,6 +67,9 @@ const Grid = () => {
       const newGrid = grid.map((row) => [...row]);
       newGrid[rowIndex][colIndex].value = number;
       setGrid(newGrid);
+    } else {
+      setSelectedNumber(number);
+      setSelectedCell({ rowIndex, colIndex });
     }
   };
 
@@ -104,8 +109,10 @@ const Grid = () => {
           {row.map((cell, colIndex) => (
             <div
               key={colIndex}
-              className={`cell ${!cell.editable ? 'number-placed' : ''}`}
-              onClick={() => handleNumberPlacement(rowIndex, colIndex, '1')}
+              className={`cell ${!cell.editable ? 'number-placed' : ''} ${
+                selectedCell && selectedCell.rowIndex === rowIndex && selectedCell.colIndex === colIndex ? 'highlight' : ''
+              }`}
+              onClick={() => handleNumberPlacement(rowIndex, colIndex, selectedNumber)}
             >
               {cell.value}
             </div>
